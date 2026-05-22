@@ -14,7 +14,7 @@ export default function ProfileHeader() {
     : (profile.profileImage || undefined);
 
   return (
-    <div className="flex items-center gap-4 text-left">
+    <div className="flex flex-col items-start items-center gap-4 text-left">
       <div className="sims-avatar-wrapper border-2 border-primary/20 bg-white shadow-sm flex items-center justify-center p-1 overflow-hidden relative rounded-full">
         {loading ? (
           <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>

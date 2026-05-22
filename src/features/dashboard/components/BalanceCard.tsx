@@ -6,7 +6,7 @@ export default function BalanceCard() {
   const { balance, showBalance, formatCurrency, handleToggleShowBalance, loading } = useBalance();
 
   return (
-    <div className="sims-saldo-card w-full md:w-[480px]">
+    <div className="sims-saldo-card w-full max-w-[700px]">
       <span className="sims-saldo-header">Saldo anda</span>
       <div className="sims-saldo-amount">
         <span className="font-semibold text-2xl opacity-90">Rp</span>
