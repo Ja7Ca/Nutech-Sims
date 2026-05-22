@@ -1,0 +1,694 @@
+@import "tailwindcss";
+
+/* Tailwind CSS v4 custom theme mappings */
+@theme {
+  --color-primary: #F13C2F;
+  --color-primary-hover: #D82C1F;
+  --color-primary-light: rgba(241, 60, 47, 0.08);
+  --color-secondary: #4B5563;
+  --color-success: #2E7D32;
+  --color-warning: #ED6C02;
+  --color-info: #0288D1;
+  --color-bg-light: #FFFFFF;
+  --color-bg-dark: #121214;
+  --color-border-light: #F1F1F1;
+  --color-border-dark: #2E303A;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-fade-in: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base custom properties */
+:root {
+  --primary: #F13C2F;
+  --primary-hover: #D82C1F;
+  --primary-light: rgba(241, 60, 47, 0.08);
+  --primary-gradient: linear-gradient(135deg, #F13C2F 0%, #F76B56 100%);
+  --secondary: #4B5563;
+
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+
+  --bg: #FFFFFF;
+  --bg-offset: #F9FAFB;
+  --border: #F1F1F1;
+  --card-bg: #FFFFFF;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-premium: rgba(0, 0, 0, 0.04) 0px 4px 24px 0px;
+
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --heading: "Outfit", "Inter", sans-serif;
+
+  font: 16px/1.5 var(--sans);
+  letter-spacing: -0.01em;
+  color-scheme: light;
+  color: var(--text-primary);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset and Layout */
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading);
+  color: var(--text-primary);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* SIMS PPOB Custom Component Styles */
+
+/* 1. Navbar Styles */
+.sims-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.sims-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.sims-nav-logo {
+  width: 28px;
+  height: 28px;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(241, 60, 47, 0.3);
+}
+
+.sims-nav-links {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .sims-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+}
+
+.sims-nav-link {
+  font-size: 0.95rem;
+  font-weight: 550;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.sims-nav-link:hover {
+  color: var(--primary);
+}
+
+.sims-nav-link.active {
+  color: var(--primary);
+}
+
+.sims-nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px;
+}
+
+/* 2. Welcome & Avatar Section */
+.sims-profile-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin: 2.5rem 0;
+}
+
+.sims-profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sims-avatar-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-offset);
+}
+
+.sims-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sims-welcome-title {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-top: 0.75rem;
+}
+
+.sims-welcome-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* 3. Saldo / Balance Card */
+.sims-saldo-card {
+  flex: 1;
+  background-image: url('/core/Background Saldo.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 1.25rem;
+  padding: 1.75rem 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(241, 60, 47, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
+}
+
+/* Background wave decoration in Saldo card */
+.sims-saldo-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: radial-gradient(circle at 100% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sims-saldo-header {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
+  z-index: 2;
+}
+
+.sims-saldo-amount {
+  font-family: var(--heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  z-index: 2;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sims-saldo-amount-hidden {
+  font-size: 2.5rem;
+  letter-spacing: 0.15em;
+  line-height: 1;
+}
+
+.sims-saldo-toggle {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.825rem;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  width: fit-content;
+  z-index: 2;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.sims-saldo-toggle:hover {
+  color: white;
+  opacity: 1;
+}
+
+/* 4. Services Grid Section */
+.sims-services-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1;
+  margin: 3rem 0;
+  padding: 0 0.5rem;
+}
+
+.sims-service-item {
+  grid-column: span 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sims-service-item:hover {
+  transform: translateY(-5px);
+}
+
+.sims-service-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  background-color: var(--bg-offset);
+}
+
+.sims-service-item:hover .sims-service-icon-box {
+  box-shadow: var(--shadow-md);
+}
+
+.sims-service-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.sims-service-label {
+  font-size: 0.75rem;
+  font-weight: 550;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.25;
+  max-width: 72px;
+  word-wrap: break-word;
+  transition: color 0.2s ease;
+}
+
+.sims-service-item:hover .sims-service-label {
+  color: var(--text-primary);
+}
+
+/* Individual Icon Theme Colors - matching the screenshot */
+.icon-box-pbb {
+  background-color: #E8F5E9;
+  color: #4CAF50;
+}
+
+.icon-box-listrik {
+  background-color: #FFF8E1;
+  color: #FFB300;
+}
+
+.icon-box-pulsa {
+  background-color: #E3F2FD;
+  color: #1E88E5;
+}
+
+.icon-box-pdam {
+  background-color: #E1F5FE;
+  color: #03A9F4;
+}
+
+.icon-box-pgn {
+  background-color: #FFEBEE;
+  color: #E53935;
+}
+
+.icon-box-tv {
+  background-color: #F3E5F5;
+  color: #8E24AA;
+}
+
+.icon-box-musik {
+  background-color: #FCE4EC;
+  color: #D81B60;
+}
+
+.icon-box-game {
+  background-color: #F1F8E9;
+  color: #7CB342;
+}
+
+.icon-box-makanan {
+  background-color: #E0F7FA;
+  color: #00ACC1;
+}
+
+.icon-box-kurban {
+  background-color: #EFEBE9;
+  color: #6D4C41;
+}
+
+.icon-box-zakat {
+  background-color: #E8F5E9;
+  color: #4CAF50;
+}
+
+.icon-box-data {
+  background-color: #E0F2F1;
+  color: #00897B;
+}
+
+/* 5. Banner & Promo Slider */
+.sims-promo-section {
+  margin: 3.5rem 0 2rem;
+  text-align: left;
+}
+
+.sims-section-title {
+  font-size: 1.25rem;
+  font-weight: 650;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.sims-promo-container {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0 1.5rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.sims-promo-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.sims-promo-container::-webkit-scrollbar-track {
+  background: var(--bg-offset);
+  border-radius: 3px;
+}
+
+.sims-promo-container::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.sims-promo-container::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+.sims-promo-card {
+  flex: 0 0 270px;
+  height: 120px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  background-size: cover;
+  background-position: center;
+}
+
+.sims-promo-card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+/* 6. Form & Primary Button Inputs */
+.sims-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+.sims-input-label {
+  font-size: 0.875rem;
+  font-weight: 550;
+  color: var(--text-secondary);
+}
+
+.sims-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sims-input-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.sims-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border-radius: 0.5rem;
+  border: 1.5px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.sims-input:disabled {
+  background-color: #F9FAFB;
+  color: #9CA3AF;
+  border-color: #F1F1F1;
+  cursor: not-allowed;
+}
+
+.sims-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.sims-input:focus+.sims-input-icon {
+  color: var(--primary);
+}
+
+/* Action Buttons */
+.sims-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  width: 100%;
+  text-decoration: none;
+}
+
+.sims-btn-primary {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(241, 60, 47, 0.2);
+}
+
+.sims-btn-primary:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 6px 16px rgba(241, 60, 47, 0.35);
+  transform: translateY(-1px);
+}
+
+.sims-btn-primary:active {
+  transform: translateY(0);
+}
+
+.sims-btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+
+.sims-btn-secondary:hover {
+  background-color: var(--primary-light);
+}
+
+.sims-btn-disabled {
+  background-color: var(--bg-offset);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.sims-btn-disabled:hover {
+  background-color: var(--bg-offset);
+  transform: none;
+}
+
+.sims-transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border: 1.5px solid var(--border);
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  background-color: var(--bg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sims-transaction-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--text-muted);
+}
+
+.sims-trans-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: left;
+}
+
+.sims-trans-amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.sims-trans-amount.plus {
+  color: #2E7D32;
+}
+
+.sims-trans-amount.minus {
+  color: var(--primary);
+}
+
+.sims-trans-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.sims-trans-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.sims-trans-type-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 1024px) {
+  .sims-navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .sims-profile-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .sims-saldo-card {
+    width: 100%;
+  }
+
+  .sims-services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .sims-service-item {
+    grid-column: span 1;
+  }
+}
