@@ -116,14 +116,12 @@ export default function Login() {
         </div>
       </div>
 
-      <div className="hidden lg:flex lg:w-1/2 bg-[#FFF3F2] items-center justify-center p-12 select-none">
-        <div className="w-full max-w-[550px] flex items-center justify-center">
-          <img
-            src="/core/Illustrasi Login.png"
-            alt="SIMS PPOB Illustration"
-            className="w-full h-auto object-contain max-h-[85vh]"
-          />
-        </div>
+      <div className="hidden lg:block lg:w-1/2 select-none max-h-screen">
+        <img
+          src="/core/Illustrasi Login.png"
+          alt="SIMS PPOB Illustration"
+          className="w-full h-full object-cover max-h-screen"
+        />
       </div>
     </div>
   );
